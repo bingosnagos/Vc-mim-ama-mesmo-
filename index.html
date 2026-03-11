@@ -3,7 +3,7 @@
 
 <head>
 <meta charset="UTF-8">
-<title>Você me ama mesmo?</title>
+<title>Você me ama?</title>
 
 <style>
 
@@ -12,6 +12,7 @@ background:#ff7a7a;
 font-family:Arial;
 text-align:center;
 padding-top:100px;
+overflow:hidden;
 }
 
 button{
@@ -27,6 +28,19 @@ cursor:pointer;
 position:absolute;
 }
 
+.heart{
+position:fixed;
+top:-10px;
+color:red;
+font-size:20px;
+animation:cair 5s linear infinite;
+}
+
+@keyframes cair{
+0%{transform:translateY(0);}
+100%{transform:translateY(100vh);}
+}
+
 </style>
 </head>
 
@@ -39,11 +53,6 @@ position:absolute;
 
 <script>
 
-function sim(){
-alert("Eu sabia que você não ia resistir ao meu charme gatinha ❤️")
-window.location="https://music.youtube.com/watch?v=izGwDsrQ1eQ";
-}
-
 function fugir(){
 
 let botao=document.getElementById("nao")
@@ -55,6 +64,45 @@ botao.style.left=x+"px"
 botao.style.top=y+"px"
 
 }
+
+function sim(){
+
+document.body.innerHTML=`
+
+<h1 style="font-size:50px;color:white;margin-top:200px;">
+Eu sabia que você não ia resistir ao meu charme gatinha ❤️
+</h1>
+
+<p style="font-size:25px;color:white;">
+Eu agradeço todo dia ´por ter você na minha vida
+</p>
+
+`
+
+setTimeout(()=>{
+window.location="https://music.youtube.com/watch?v=izGwDsrQ1eQ"
+},3000)
+
+}
+
+function criarCoracao(){
+
+let coracao=document.createElement("div")
+coracao.classList.add("heart")
+coracao.innerHTML="❤️"
+
+coracao.style.left=Math.random()*100+"vw"
+coracao.style.animationDuration=(Math.random()*3+2)+"s"
+
+document.body.appendChild(coracao)
+
+setTimeout(()=>{
+coracao.remove()
+},5000)
+
+}
+
+setInterval(criarCoracao,300)
 
 </script>
 
